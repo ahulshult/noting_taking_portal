@@ -5,12 +5,12 @@
 
 export const environment = {
   production: false,
-  firebase:{
-  	apiKey: "",
-    authDomain: "",
-    databaseURL: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: ""
+  firebase: {
+    apiKey: "AIzaSyDXjxwYvsm5KN3W2KNrx83_1bLszEGB2a0",
+    authDomain: "notegator.firebaseapp.com",
+    databaseURL: "https://notegator.firebaseio.com",
+    projectId: "notegator",
+    storageBucket: "notegator.appspot.com",
+    messagingSenderId: "notegator"
   }
 };

@@ -1,6 +1,5 @@
-<div class="header">
-	<h3>
-		Angular Firebase Task Manager
-	</h3>
+<html>
+<div *ngIf="!user">
+  <router-outlet></router-outlet>
 </div>
-<app-list-task></app-list-task>
+</html>

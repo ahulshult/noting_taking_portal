@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-list-task',
@@ -10,18 +10,18 @@ export class ListTaskComponent implements OnInit {
 
 	public tasks;
 
-  	constructor(private angularFire: AngularFireDatabase) {
+  	constructor(private angularFire: AngularFirestoreModule) {
 
   	}
 
 	ngOnInit() {
-		this.getTask().subscribe(res => {
+	/*	this.getTask().subscribe(res => {
 			this.tasks = res;
-		});
+		});*/
 	}
 
-	getTask(){
+/*	getTask(){
 		return this.angularFire.list('/task').valueChanges();
 	}
-
+*/
 }

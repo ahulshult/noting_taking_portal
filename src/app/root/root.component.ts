@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RootComponent implements OnInit {
 
-  constructor() { }
+  constructor( private router: Router) {
+   }
 
   ngOnInit() {
   }
+
+
 
 }
