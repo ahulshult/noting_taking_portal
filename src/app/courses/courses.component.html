@@ -49,9 +49,10 @@ limitations under the License.
     <app-sidenav></app-sidenav>
     <div class="wrapper">
       <app-add-task></app-add-task>
-      <ul class="list-group">
-        hi
-      </ul>
+      <div *ngFor="let item of users | async">
+           <p *ngIf="item.id == userid">{{ item.first_name }} is {{ item.id }}</p>
+         </div>
+
     </div>
   </body>
 </html>

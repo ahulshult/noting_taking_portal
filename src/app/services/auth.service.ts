@@ -9,9 +9,11 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap'
 
 interface User {
-  uid: string;
-  email: string;
-
+  is_notetaker: boolean;
+  first_name: string;
+  last_name: string;
+  classes: any[];
+  notes: any[];
 }
 
 
@@ -69,8 +71,11 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
 
     const data: User = {
-      uid: user.uid,
-      email: user.email,
+      is_notetaker: false,
+      first_name: '',
+      last_name: '',
+      classes: [],
+      notes: []
     }
 
     return userRef.set(data, { merge: true })

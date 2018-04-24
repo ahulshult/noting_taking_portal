@@ -1,3 +1,50 @@
-<div *ngFor="let item of items | async">
-     <p *ngIf="item.uid == userid">{{ item.first_name }} is {{ item.uid }}</p>
-   </div>
+<!DOCTYPE html>
+<!--
+Copyright (c) 2016 Google Inc.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<html lang="en">
+<head>
+  <meta charset=utf-8 />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Course</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+      <style>
+        body {
+          background-color: grey;
+          background-repeat: no-repeat;
+          background-size: cover;
+          height: 100%;
+        }
+      </style>
+</head>
+  <body>
+    <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+      <div class="container">
+        <form>
+          <div class="form-group">
+            <label>Course Number</label>
+            <input type="text" id="number" name="number" class="form-control" placeholder="Course Number" [(ngModel)]="model.number" required>
+          </div>
+          <div>
+            <label>Course Name</label>
+            <input class="form-control" type="text" id="name" name="name" [(ngModel)]="model.name" required>
+          </div>
+          <div>
+            <label>Professor Name</label>
+            <input class="form-control" type="text" id="professor" name="professor" [(ngModel)]="model.professor" required>
+          </div>
+          <button type="submit" (click)="saveCourse()">Add</button>
+      </form>
+    </div>
+  </div>
+  </body>
+</html>
