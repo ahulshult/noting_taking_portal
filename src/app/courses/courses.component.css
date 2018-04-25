@@ -1,0 +1,23 @@
+.add{
+  background-color: #b3ffb3;
+  font-size: 30px;
+  font-style: bold,  'Montserrat', sans-serif;
+}
+
+.row-fluid:hover{
+  background: #E8E8E8;
+  height: 150px;
+}
+.atitle{
+  font-size: 30px;
+  font-style: bold,  'Montserrat', sans-serif;
+}
+
+.prof{
+  font-size: 15px;
+  font-style: 'Montserrat', sans-serif;
+}
+.notes{
+  font-size: 15px;
+  font-style: bold, 'Montserrat', sans-serif;
+}

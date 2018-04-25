@@ -1,3 +1,101 @@
-<p>
-  signup works!
-</p>
+<!DOCTYPE html>
+<!--
+Copyright (c) 2016 Google Inc.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<html lang="en">
+<head>
+  <meta charset=utf-8 />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomePage</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <style>
+  body {
+    background-image: url('https://images.pexels.com/photos/442574/pexels-photo-442574.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+  }
+  .padding{
+    padding-top: 100px;
+    padding-bottom: 230px;
+
+  }
+  </style>
+</head>
+      <body>
+        <div class="padding">
+          <div class="col-md-7 text-center">
+            <div class="layer">
+              <div *ngIf="showSignup">
+              <form class="form-horizontal">
+                <h3 align="center" class="text" >Login Form</h3>
+                <p class="text"> Please fill out this form to create an account. </p>
+                <div class="form-group">
+                  <div align="center">
+                  <label for="fname" class="text">First Name</label>
+                  <input type="text" class="form-control" name="fname" id="fname" [(ngModel)]="model.first_name"placeholder="First Name" style="width:300px;" required>
+                  <label for="lname" class="text">Last Name</label>
+                  <input type="text" class="form-control" id="lname" name="lname" [(ngModel)]="model.last_name" placeholder="Last Name" style="width:300px;" required>
+                  <hr>
+                  <div class="padding2">
+                  <button type="button" class="btn btn-block" (click)="nextLogin()" style="width:300px; background-color:#98FB98">
+                      <i class="fa fa-google" aria-hidden="true"></i>
+                          Next
+                  </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="showInputAlert">
+              All fields are required. Please check that you have answered all fields.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="resetAlert()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+          <div *ngIf="showLogin">
+            <form class="form-horizontal" >
+              <div class="form-group">
+                <div align="center">
+                  <h3 align="center" class="text"> Choose how to sign in in the future: </h3>
+                  <button type="button" class="btn btn-block" (click)="signInWithFacebook()" style="width:300px;">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                      Login with Facebook
+                  </button>
+
+                  <button type="button" class="btn btn-block" (click)="signInWithGoogle()" style="width:300px;">
+                      <i class="fa fa-google" aria-hidden="true"></i>
+                          Login with Google
+                  </button>
+                  <hr>
+                  <div class="ortext">Or</div>
+                    <input type="text" class="form-control" id="ename" name="email" [(ngModel)]="email" placeholder="Email" style="width:300px;" required>
+
+                    <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" placeholder="Password" style="width:300px;" required>
+
+                    <input type="repassword" class="form-control" id="repassword" placeholder="Re-enter Password" style="width:300px;" required>
+                  <hr>
+                  <button type="button" class="btn btn-block" (click)="signInWithEmail()" style="width:300px; background-color:#98FB98">
+                      <i class="fa fa-google" aria-hidden="true"></i>
+                          Submit
+                  </button>
+                </div>
+                </div>
+            </form>
+          </div>
+          </div>
+          </div>
+      </div>
+
+  </body>
+  <router-outlet></router-outlet>
+</html>

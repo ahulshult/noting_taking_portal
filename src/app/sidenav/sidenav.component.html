@@ -32,66 +32,15 @@ limitations under the License.
   <script defer src="/__/firebase/init.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <script type="text/javascript" src="js/lib/jquery-1.11.1.min.js" ></script>
-    <style>
-    body {
-        font-family: 'Montserrat', san-serif;
-    }
-
-    .sidenav {
-        height: 100%;
-        width: 300px;
-        padding-top: 55px;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        background-color: #222;
-        overflow-x: hidden;
-    }
-
-    .sidenav a {
-        padding: 32px 15px 15px 32px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: block;
-    }
-
-    .sidenav a:hover {
-        color: #f1f1f1;
-    }
-
-    .main {
-        margin-left: 350px; /* Same as the width of the sidenav */
-        padding-top: 55px;
-
-    }
-
-    @media screen and (min-width: 600px) {
-      .sidenav {width: 300px; }
-      .sidenav {padding-top: 32px;}
-      .sidenav a {font-size: 18px;}
-    }
-    h2 {
-      font-weight: bold;
-      font-family: 'Montserrat', san-serif;
-      font-size: 25px;
-      text-align: centered;
-    }
-    .wrapper{
-        overflow: visible;
-    }
-    </style>
     </head>
   <body>
     <div class = "container-fluid">
       <div class="sidenav">
         <ul class="list-unstyled components">
-      <li class="active" onclick="goToCourse()">Courses</li>
-      <li class="active"><a href="#">Notes</a></li>
-      <li class="active"><a href="#">Notifications</a></li>
-      <li class="active"><a href="#">Chat</a></li>
-      <button type="button" (click)="goToCourse()">Click</button>
+          <li class="active">Courses</li>
+          <li class="active"><a href="#">Notes</a></li>
+          <li class="active"><a href="#">Notifications</a></li>
+          <li class="active"><a href="#">Chat</a></li>
       </ul>
     </div>
     </div>

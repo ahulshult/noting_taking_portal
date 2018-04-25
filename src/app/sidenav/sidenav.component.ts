@@ -12,7 +12,9 @@ import * as firebase from 'firebase/app';
 })
 export class SidenavComponent implements OnInit {
   private user;
+  public userid;
   constructor(private authService: AuthService, public router: Router) {
+    this.userid = this.authService.userLoggedIn().uid;
    }
 
    goToCourse(){

@@ -13,25 +13,13 @@ import { BrowserModule } from '@angular/platform-browser';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public user;
+  public userid;
   constructor( public authService: AuthService, private router: Router) {
+    this.userid = this.authService.userLoggedIn().uid;
    }
 
-   checkForLogin() {
-   firebase.auth().onAuthStateChanged(function(user) {
-     if (user) {
-       this.user = true;
-       return true;
-     } else {
-       this.user = false;
-       return false;
-       // No user is signed in.
-     }
-   });
- }
 
   ngOnInit() {
-    this.checkForLogin();
   }
 
 }

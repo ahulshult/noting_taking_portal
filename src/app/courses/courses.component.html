@@ -48,11 +48,26 @@ limitations under the License.
     <app-header></app-header>
     <app-sidenav></app-sidenav>
     <div class="wrapper">
-      <app-add-task></app-add-task>
-      <div *ngFor="let item of users | async">
-           <p *ngIf="item.id == userid">{{ item.first_name }} is {{ item.id }}</p>
-         </div>
+      <div class="container-fluid">
+      <div *ngFor="let item of items | async">
+        <a (click)="notes(items)">
+          <div class = "row-fluid">
+           <div class="atitle">{{ item.classNumber }}   :  {{item.coureNumber}}  {{ item.name }}
+           </div>
+           <div class="prof">{{item.professor}}
+           </div>
+          </div>
+         </a>
+      </div>
+      <div class="row-fluid">
+        <a (click)="addClass()">
+        <div class="add">
+          Add class
+        </div>
+      </a>
+      </div>
 
+    </div>
     </div>
   </body>
 </html>

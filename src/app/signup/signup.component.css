@@ -1,0 +1,26 @@
+
+.layer{
+
+
+  border-radius: 4px;
+  position:relative;
+   background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+   background: rgba(50, 50, 50, 0.75);
+  }
+
+  .text{
+    color:#E8E8E8;
+    font-style: bold, 'Montserrat', sans-serif ;
+  }
+.float-center{
+  float: right;
+  left: -50%;
+  text-align: left;
+}
+.ortext{
+  color:#E8E8E8;
+  font-style: bold, 'Montserrat', sans-serif, 30px  ;
+}
+.padding2{
+  padding-bottom: 30px;
+}

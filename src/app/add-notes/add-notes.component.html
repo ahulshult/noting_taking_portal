@@ -33,15 +33,16 @@ limitations under the License.
         <form class="form-horizontal"  align="center" >
           <div class="form-group">
             <div align="center">
-                <input type="text" class="form-control" id="number" placeholder="Class Number" name="num" [(ngModel)]="model.classNumber" style="width:300px;" required>
-                <input type="text" class="form-control" id="conum" name="conum" [(ngModel)]="model.courseNumber" placeholder="Course Number" style="width:300px;" required>
-                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model.name" placeholder="ex. Programming Fundamentals 1" style="width:300px;" required>
-                <input type="text" class="form-control" id="pname" name="pname" [(ngModel)]="model.professor" placeholder="Professor Name" style="width:300px;" required>
+                <input type="text" class="form-control" id="number" placeholder="Class Number" name="num" [(ngModel)]="classNumber" style="width:300px;" required>
+                <input type="text" class="form-control" id="conum" name="conum" [(ngModel)]="model.date_for" placeholder="Date of Class" style="width:300px;" required>
+                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model.date_uploaded" placeholder="Upload Date" style="width:300px;" required>
+                <label for="file">File:</label><input type="file" (change)="upload($event)" accept=".png,.jpg,.pdf,.docx,.doc" />
               <hr>
               <button type="button" class="btn btn-block" (click)="saveCourse()" style="width:300px; background-color:#98FB98">
                   <i class="fa fa-google" aria-hidden="true"></i>
                       Submit
               </button>
+              <progress max="100" [value]="(uploadProgress | async)"></progress>
             </div>
           </div>
         </form>

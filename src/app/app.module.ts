@@ -26,7 +26,8 @@ import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
 import { CoursesComponent } from './courses/courses.component';
 import { NotesComponent } from './notes/notes.component';
 import { NotificationsComponent } from './notifications/notifications.component';
-
+import { AddNotesComponent } from './add-notes/add-notes.component';
+import {AngularFireStorageModule} from 'angularfire2/storage';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,13 +37,19 @@ const appRoutes: Routes = [
   { path: 'addClass/:id',
   canActivate: [ AuthGuard ],
    component: AddTaskComponent},
+   { path: 'addNotes/:id',
+   canActivate: [ AuthGuard ],
+    component: AddNotesComponent},
   {
     path: 'homepage/:id',
     canActivate: [ AuthGuard ],
     component: HomePageComponent
   },
   {
-    path: 'courses/:id', component: CoursesComponent
+    path: 'courses/:id', component: CoursesComponent, canActivate: [ AuthGuard ],
+  },
+  {
+    path: 'signup', component: SignupComponent
   },
   {
     path: '**',
@@ -67,7 +74,8 @@ const appRoutes: Routes = [
     NoPageFoundComponent,
     CoursesComponent,
     NotesComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    AddNotesComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -79,7 +87,8 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    CommonModule
+    CommonModule,
+    AngularFireStorageModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [RootComponent]

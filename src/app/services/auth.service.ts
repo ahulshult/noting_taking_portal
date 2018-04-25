@@ -7,19 +7,12 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap'
-
-interface User {
-  is_notetaker: boolean;
-  first_name: string;
-  last_name: string;
-  classes: any[];
-  notes: any[];
-}
+import {User} from '../models/user.model';
 
 
 @Injectable()
 export class AuthService {
-
+  model = new User('', false, '', '', [], []);
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
   constructor(private afAuth: AngularFireAuth,
@@ -39,14 +32,6 @@ export class AuthService {
           }
         }
       );
-      this.user = this.afAuth.authState
-        .switchMap(user => {
-          if (user) {
-            return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
-          } else {
-            return Observable.of(null)
-          }
-        })
 
   }
 
@@ -57,28 +42,65 @@ export class AuthService {
     return this.oAuthLogin(provider);
   }
 
+  facebookLogin(){
+    const provider = new firebase.auth.FacebookAuthProvider()
+    return this.oAuthLogin(provider);
+  }
+
+  firstgoogleLogin(userInfo){
+    const provider = new firebase.auth.GoogleAuthProvider()
+    return this.firstoAuthLogin(provider, userInfo);
+  }
+
+  firstfacebookLogin(userInfo){
+    const provider = new firebase.auth.FacebookAuthProvider()
+    return this.firstoAuthLogin(provider, userInfo);
+  }
+
+  firstsignInRegular(email, password, userInfo) {
+    console.log(email + password + userInfo);
+      var credentials = this.afAuth.auth.createUserWithEmailAndPassword(email, password );
+      console.log(credentials);
+      return true;
+      //  return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    }
+    signInRegular(email, password) {
+      console.log(email + password);
+        return this.afAuth.auth.signInWithEmailAndPassword(email, password );
+        
+        //  return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+      }
+
+
+  private firstoAuthLogin(provider, userInfo) {
+    return this.afAuth.auth.signInWithPopup(provider)
+      .then((credential) => {
+        this.updateUserData(credential.user, userInfo)
+      })
+  }
+
   private oAuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
-        this.updateUserData(credential.user)
+        this.user = credential.user
       })
   }
 
 
-  private updateUserData(user) {
+  private updateUserData(credential, userInfo) {
     // Sets user data to firestore on login
+    //console.log(user);
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${credential.uid}`);
 
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
 
-    const data: User = {
-      is_notetaker: false,
-      first_name: '',
-      last_name: '',
+    return userRef.set({
+      uid: credential.uid,
       classes: [],
+      isNotetaker: userInfo.isNotetaker,
+      first_name: userInfo.first_name,
+      last_name: userInfo.last_name,
       notes: []
-    }
-
-    return userRef.set(data, { merge: true })
+    })
 
   }
 

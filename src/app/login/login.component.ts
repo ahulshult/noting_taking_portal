@@ -11,26 +11,28 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  public email;
+  public password;
   private user;
   constructor(private authService: AuthService, private router: Router) {
   }
 
+  signInWithEmail() {
+    console.log(this.email);
+    this.authService.signInRegular(this.email, this.password)
+    .then((res)=>{
+      this.user = firebase.auth().currentUser;
+      console.log(this.user);
+      this.router.navigate(['homepage', this.user.id])
+    }).catch((err) => console.log(err));
 
-   signInWithTwitter() {
-      this.authService.googleLogin()
-
-      .then((res) => {
-          this.router.navigate(['dashboard'])
-        })
-      .catch((err) => console.log(err));
-    }
-
+  }
 
     signInWithFacebook() {
-      this.authService.googleLogin()
+      this.authService.facebookLogin()
       .then((res) => {
-          this.router.navigate(['dashboard'])
+        this.user = firebase.auth().currentUser;
+          this.router.navigate(['homepage', this.user.uid])
         })
       .catch((err) => console.log(err));
     }
@@ -40,7 +42,7 @@ export class LoginComponent implements OnInit {
       this.authService.googleLogin()
       .then((res) => {
           this.user = firebase.auth().currentUser;
-          this.router.navigate(['addClass', this.user.uid])
+          this.router.navigate(['addNotes', this.user.uid])
         })
       .catch((err) => console.log(err));
     }

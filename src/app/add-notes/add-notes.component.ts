@@ -9,46 +9,40 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import {AuthService} from '../services/auth.service';
 import { Observable } from 'rxjs/Observable';
 import {FormsModule} from '@angular/forms';
-import {Course} from '../models/course.model';
+import {Notes} from '../models/notes.model';
+import { AngularFireStorage, AngularFireStorageModule } from 'angularfire2/storage';
 //import {MessagesModule} from 'primeng/messages';
 //import {MessageModule} from 'primeng/message';
 //import {MessageService} from 'primeng/components/common/messageservice';
 
 var variable;
-export interface Class{
-  name: string;
-  number: string;
-  professor: string;
-  notes: any[];
-}
-export interface User{
-  is_notetaker: boolean;
-  first_name: string;
-  last_name: string;
-  classes: any[];
-  notes: any[];
-}
 
 @Component({
-  selector: 'app-add-task',
-  templateUrl: './add-task.component.html',
-  styleUrls: ['./add-task.component.css']
+  selector: 'app-add-notes',
+  templateUrl: './add-notes.component.html',
+  styleUrls: ['./add-notes.component.css']
 })
 
 
-export class AddTaskComponent implements OnInit {
-
+export class AddNotesComponent implements OnInit {
+  public filePath;
   public userid;
   public user;
   public newclass;
-  public currentCourses;
-  public course: Class;
-  model = new Course('', '', '', '', []);
-  itemCollection: AngularFirestoreCollection<Class>;
+  public currentNotes;
+  public classNumber;
+  public ref;
+  public task;
+  public uploadProgress;
+  model = new Notes('', '', '');
+  //itemCollection: AngularFirestoreCollection<Class>;
   //itemDocument: AngularFirestoreDocument<User>
   //items: Observable<User[]>
-  	constructor(public af: AngularFirestore, private as: AuthService, private router: Router) {
-    this.userid = this.as.userLoggedIn().uid;
+  private basePath;
+    constructor(public af: AngularFirestore, private as: AuthService, private router: Router, private afStorage: AngularFireStorage) {
+    basePath = '/uploads';
+      this.userid = this.as.userLoggedIn().uid;
+      this.filePath = '';
     //this.user = this.as.userLoggedIn().classes;
     //this.itemDocument = this.af.('/user/1');
     //this.items = this.itemDocument.valueChanges();
@@ -56,11 +50,11 @@ export class AddTaskComponent implements OnInit {
 
 	ngOnInit() {
     //let user = firebase.auth().currentUser;
-    this.currentCourses= this.af.collection('/user').doc(this.userid).ref.get()
+    this.currentNotes= this.af.collection('/user').doc(this.userid).ref.get()
     .then(function(doc){
       if(doc.exists){
-        console.log(doc.data().classes);
-        variable = doc.data().classes;
+        console.log(doc.data().notes);
+        variable = doc.data().notes;
         console.log(variable);
         return doc.data()
       }
@@ -68,21 +62,16 @@ export class AddTaskComponent implements OnInit {
       console.log(error);
     });
 
-
-    /*this.currentCourses = this.af.collection('/user').snapshotChanges().map(changes => {
-      return changes.map(a => {
-        const data = a.payload.doc.data() as User;
-        //data.id = a.payload.doc.id;
-         return data;
-
-        });
-      });*/
-    //console.log('new' + this.newclass);
-    //this.user.push('hello');
-
-    //console.log(this.course)
 	}
 
+  upload(event) {
+    const randomId = Math.random().toString(36).substring(2);
+     this.ref = this.afStorage.ref(randomId);
+     this.task = this.ref.put(event.target.files[0]);
+     //this.uploadProgress = this.task.snapshotChanges()
+    //.pipe(Map(s => (s.bytesTransferred / s.totalBytes) * 100));
+  }
+/*
     saveCourse(){
       return this.af.collection("/class").add(
         {
@@ -132,7 +121,7 @@ export class AddTaskComponent implements OnInit {
 
    const data: User = {
      uid: user.uid,
-     email: user.email,
+     email: user.email,s
    }
  */
 }

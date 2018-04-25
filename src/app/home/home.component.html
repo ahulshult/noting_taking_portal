@@ -24,14 +24,22 @@ limitations under the License.
         background-size: cover;
         height: 100%;
       }
+      .padding{
+        padding-top: 100px;
+        padding-bottom: 410px;
+      }
     </style>
 </head>
       <body>
+        <div class="padding">
           <div class="col-md-12 text-center" style = "font-family: 'Montserrat', sans-serif; font-size:100px" >
             NoteGator
           </div>
           <div class="col-md-12 text-center">
-          <app-login></app-login>
+          <button type="button" class="btn btn-primary btn-lg round" (click)="loginPage()"> Login</button>
+          <button type="button" class="btn btn-primary btn-lg round" (click)="signUpPage()">Sign Up</button>
+        </div>
           </div>
       </body>
+      <router-outlet></router-outlet>
   </html>

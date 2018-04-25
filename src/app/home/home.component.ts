@@ -17,6 +17,14 @@ export class HomeComponent implements OnInit {
   constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
    }
 
+   loginPage(){
+     this.router.navigate(['login']);
+   }
+
+   signUpPage(){
+     this.router.navigate(['signup']);
+   }
+
   ngOnInit() {
   }
 
