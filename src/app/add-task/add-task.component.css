@@ -2,11 +2,12 @@
 .layer{
   border-radius: 4px;
   position:relative;
-   background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
-   background: rgba(50, 50, 50, 0.75);
+
   }
+
 .form-group{
-	padding: 30px, 30px, 30px, 30px;
+  border-color: black;
+  border-radius: 4px;
 
 }
   .text{
@@ -21,4 +22,7 @@
 .ortext{
   color:#E8E8E8;
   font-style: bold, 'Montserrat', sans-serif, 30px  ;
+}
+body{
+  background-color: white;
 }

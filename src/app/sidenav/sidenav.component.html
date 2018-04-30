@@ -37,10 +37,9 @@ limitations under the License.
     <div class = "container-fluid">
       <div class="sidenav">
         <ul class="list-unstyled components">
-          <li class="active">Courses</li>
-          <li class="active"><a href="#">Notes</a></li>
-          <li class="active"><a href="#">Notifications</a></li>
-          <li class="active"><a href="#">Chat</a></li>
+          <li class="active" (click)="notesPage()"><a>Notes</a></li>
+          <li class="active" (click)="coursesPage()"><a>Courses</a></li>
+          <li class="active" (click)="notificationsPage()"><a>Notifications</a></li>
       </ul>
     </div>
     </div>

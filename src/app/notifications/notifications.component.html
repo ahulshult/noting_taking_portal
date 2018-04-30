@@ -1,3 +1,55 @@
-<p>
-  notifications works!
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset=utf-8 />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomePage</title>
+  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/4.12.0/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/4.12.0/firebase-auth.js"></script>
+  <script defer src="/__/firebase/4.12.0/firebase-database.js"></script>
+  <script defer src="/__/firebase/4.12.0/firebase-messaging.js"></script>
+  <script defer src="/__/firebase/4.12.0/firebase-storage.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script type="text/javascript" src="js/lib/jquery-1.11.1.min.js" ></script>
+    <style>
+    body {
+        font-family: 'Montserrat', san-serif;
+        padding-top: 70px;
+        padding-left: 300px;
+    }
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+    </style>
+  </head>
+  <body>
+    <app-header></app-header>
+    <app-sidenav></app-sidenav>
+    <div class="wrapper">
+      <div class="container-fluid">
+      <div *ngFor="let item of items | async">
+        <a (click)="notes(item.classNumber)">
+          <div class = "row-fluid">
+           <div class="atitle">{{ item.name }}  sent you a message:
+           </div>
+           <div class="text">{{item.text}}
+           </div>
+           <div class="text"> at {{item.time}}</div>
+          </div>
+         </a>
+       </div>
+   </div>
+    </div>
+    <router-outlet></router-outlet>
+  </body>
+</html>

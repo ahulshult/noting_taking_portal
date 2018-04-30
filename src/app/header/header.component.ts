@@ -21,5 +21,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  gohome(){
+    this.router.navigate(['courses', this.userid]);
+  }
 }

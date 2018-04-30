@@ -16,27 +16,20 @@ export class SidenavComponent implements OnInit {
   constructor(private authService: AuthService, public router: Router) {
     this.userid = this.authService.userLoggedIn().uid;
    }
-
-   goToCourse(){
-     firebase.auth().onAuthStateChanged(function(user) {
-   if (user) {
-     console.log('true');
-     console.log(user.uid);
-     this.router.navigate(['homepage', this.user.uid])
-     return true;
-     // User is signed in.
-   } else {
-   return false;
-     // No user is signed in.
-   }
- });
-      //}
-     //else{
- }
-
   ngOnInit() {
 
   }
 
+  notesPage(){
+    this.router.navigate(['notes', this.userid])
+  }
+
+  coursesPage(){
+    this.router.navigate(['courses', this.userid])
+  }
+
+  notificationsPage(){
+    this.router.navigate(['notifications', this.userid])
+  }
 
 }

@@ -19,19 +19,17 @@ limitations under the License.
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
       <style>
         body {
-          padding-top: 80px;
-          padding-left: 350px;
+          padding-top: 20px;
+          padding-left: 750px;
         }
       </style>
 </head>
-<app-header></app-header>
-<app-sidenav></app-sidenav>
   <body>
-    <div class="floating">
     <div class="col-md-7 text-center">
       <div class="layer">
         <form class="form-horizontal"  align="center" >
           <div class="form-group">
+            <h3 align="center"> Add Course </h3>
             <div align="center">
                 <input type="text" class="form-control" id="number" placeholder="Class Number" name="num" [(ngModel)]="model.classNumber" style="width:300px;" required>
                 <input type="text" class="form-control" id="conum" name="conum" [(ngModel)]="model.courseNumber" placeholder="Course Number" style="width:300px;" required>
@@ -47,6 +45,11 @@ limitations under the License.
         </form>
   </div>
 </div>
+<div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="showInputAlert">
+  Success!
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="resetAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 
 </body>

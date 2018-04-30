@@ -41,6 +41,7 @@ export class AddTaskComponent implements OnInit {
   public userid;
   public user;
   public newclass;
+  public showInputAlert;
   public currentCourses;
   public course: Class;
   model = new Course('', '', '', '', []);
@@ -52,6 +53,7 @@ export class AddTaskComponent implements OnInit {
     //this.user = this.as.userLoggedIn().classes;
     //this.itemDocument = this.af.('/user/1');
     //this.items = this.itemDocument.valueChanges();
+    this.showInputAlert=false;
     }
 
 	ngOnInit() {
@@ -100,6 +102,7 @@ export class AddTaskComponent implements OnInit {
           var newclass = variable;
           return this.updateUser(newclass);
         }).then((bo) =>{
+          this.showInputAlert=true;
           this.router.navigate(['courses', this.userid]);
         }).catch((error) => {
           console.error("Error adding document: ", error);

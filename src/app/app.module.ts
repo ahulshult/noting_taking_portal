@@ -37,6 +37,14 @@ const appRoutes: Routes = [
   { path: 'addClass/:id',
   canActivate: [ AuthGuard ],
    component: AddTaskComponent},
+   { path: 'notifications/:id',
+   canActivate: [ AuthGuard ],
+    component: NotificationsComponent},
+   {
+     path: 'notes/:id',
+     canActivate: [AuthGuard],
+     component: NotesComponent
+   },
    { path: 'addNotes/:id',
    canActivate: [ AuthGuard ],
     component: AddNotesComponent},

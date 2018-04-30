@@ -1,0 +1,61 @@
+
+
+.big-icon {
+    font-size: 100px;
+}
+
+.fa-mycustomx{
+    font-size:3.2em;
+}
+.calendar-text { margin-top: .3em; }
+.file-text { margin-top: .2em; }
+
+.pdfobject-container { height: 500px;}
+.pdfobject { border: 1px solid #666; }
+
+.fa-calendar-o{
+  color: #77dd77;
+}
+.add{
+  border: black;
+  font-size: 30px;
+  font-style: bold,  'Montserrat', sans-serif;
+  position: absolute;
+}
+
+.row-fluid{
+  max-width: 700px;
+  background: #E8E8E8;
+  position: relative;
+}
+
+.note{
+  position: absolute;
+}
+
+.add{
+  max-width: 400px;
+  float:left;
+}
+.vl {
+    border-left: 1px solid grey;
+    height: cover;
+}
+
+.row-fluid:hover{
+  background: #E8E8E8;
+  height: 100px;
+}
+.atitle{
+  font-size: 25px;
+  font-style: bold,  'Montserrat', sans-serif;
+}
+
+.text{
+  font-size: 20px;
+  font-style: 'Montserrat', sans-serif;
+}
+.notes{
+  font-size: 15px;
+  font-style: bold, 'Montserrat', sans-serif;
+}

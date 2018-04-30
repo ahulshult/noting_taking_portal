@@ -26,10 +26,11 @@ limitations under the License.
       }
       .padding{
         padding-top: 100px;
-        padding-bottom: 200px;
+        padding-bottom: 400px;
+        padding-left: 300px;
 
       }
-      
+
     </style>
 </head>
       <body>
@@ -50,17 +51,6 @@ limitations under the License.
                           Login with Google
                   </button>
                   <hr>
-                  <div class="ortext">Or</div>
-                    <input type="text" class="form-control" id="ename" placeholder="Email" name="email" [(ngModel)]="email" style="width:300px;" required>
-
-                    <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" placeholder="Password" style="width:300px;" required>
-
-                    <input type="repassword" class="form-control" id="repassword" placeholder="Re-enter Password" style="width:300px;" required>
-                  <hr>
-                  <button type="button" class="btn btn-block" (click)="signInWithEmail()" style="width:300px; background-color:#98FB98">
-                      <i class="fa fa-google" aria-hidden="true"></i>
-                          Submit
-                  </button>
                 </div>
               </div>
             </form>

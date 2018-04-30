@@ -1,3 +1,44 @@
-<p>
-  notes works!
-</p>
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+body {
+    font-family: 'Montserrat', san-serif;
+    padding-top: 70px;
+    padding-left: 300px;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+      <app-header></app-header>
+      <app-sidenav></app-sidenav>
+      <div class="wrapper">
+        <div class="container-fluid">
+        <div *ngFor="let item of items | async">
+          <div *ngIf="showNotes(item.classNumber)">
+          <a (click)="getNotes(item.classNumber, item.uid)">
+            <div class = "row-fluid">
+             <div class="atitle"><i class="fas fa-sticky-note"></i>{{ item.classNumber }}   :  {{item.courseNumber}}
+             </div>
+             <div class="prof">{{item.date_for}}
+             </div>
+            </div>
+           </a>
+        </div>
+      </div>
+    </div>
+</div>
+<app-add-notes></app-add-notes>
+</body>
+<router-outlet></router-outlet>
+</html>

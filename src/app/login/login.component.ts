@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       this.authService.googleLogin()
       .then((res) => {
           this.user = firebase.auth().currentUser;
-          this.router.navigate(['addNotes', this.user.uid])
+          this.router.navigate(['courses', this.user.uid])
         })
       .catch((err) => console.log(err));
     }

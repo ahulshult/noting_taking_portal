@@ -16,7 +16,7 @@ import { AngularFireStorage, AngularFireStorageModule } from 'angularfire2/stora
 //import {MessageService} from 'primeng/components/common/messageservice';
 
 var variable;
-
+var d = new Date();
 @Component({
   selector: 'app-add-notes',
   templateUrl: './add-notes.component.html',
@@ -31,18 +31,24 @@ export class AddNotesComponent implements OnInit {
   public newclass;
   public currentNotes;
   public classNumber;
+  public courseNumber;
   public ref;
   public task;
   public uploadProgress;
-  model = new Notes('', '', '');
+  public randomId;
+  public file;
+  public showInputAlert;
+  model = new Notes('', '');
   //itemCollection: AngularFirestoreCollection<Class>;
   //itemDocument: AngularFirestoreDocument<User>
   //items: Observable<User[]>
   private basePath;
     constructor(public af: AngularFirestore, private as: AuthService, private router: Router, private afStorage: AngularFireStorage) {
-    basePath = '/uploads';
+    this.basePath = 'gs://notegator.appspot.com/documents/';
       this.userid = this.as.userLoggedIn().uid;
-      this.filePath = '';
+      this.randomId = Math.random().toString(36).substring(2);
+      this.showInputAlert = false;
+      //this.filePath = '';
     //this.user = this.as.userLoggedIn().classes;
     //this.itemDocument = this.af.('/user/1');
     //this.items = this.itemDocument.valueChanges();
@@ -65,40 +71,52 @@ export class AddNotesComponent implements OnInit {
 	}
 
   upload(event) {
-    const randomId = Math.random().toString(36).substring(2);
-     this.ref = this.afStorage.ref(randomId);
-     this.task = this.ref.put(event.target.files[0]);
+
+    this.file = event.target.files[0];
+  }
+
      //this.uploadProgress = this.task.snapshotChanges()
     //.pipe(Map(s => (s.bytesTransferred / s.totalBytes) * 100));
-  }
-/*
-    saveCourse(){
-      return this.af.collection("/class").add(
+
+
+    private saveNote(){
+      //const timestamp = snapshot.get('created_at');
+    //  const date = timestamp.toDate();
+      const filePath = this.basePath + this.randomId;
+      const refer = this.afStorage.ref(filePath);
+      console.log(refer);
+      const task = refer.put(this.file, { customMetadata: { blah: 'blah' } });
+      //const path = refer.getDownloadURL();
+      console.log("path");
+    //  this.saveNote("gs://notegator.appspot.com/" + filePath);
+      return this.af.collection("/notes").add(
         {
-          classNumber: this.model.classNumber,
-          name: this.model.name,
-          courseNumber: this.model.courseNumber,
-          professor: this.model.professor,
-          notes: []
+          date_uploaded: d,
+          day_uploaded: d.getDay(),
+          date_for: this.model.date_for,
+          uid: this.userid,
+          path: filePath,
+          courseNumber: this.courseNumber
         }).then((docRef) => {
           if(variable == null){
-            variable = this.model.classNumber;
+            variable = [docRef.id];
           } else {
-            variable.push(this.model.classNumber);
+            variable.push(docRef.id);
           }
           var newclass = variable;
           return this.updateUser(newclass);
         }).then((bo) =>{
-          this.router.navigate(['courses', this.userid]);
+          this.showInputAlert = true;
+          this.router.navigate(['notes', this.userid]);
         }).catch((error) => {
           console.error("Error adding document: ", error);
         });
     }
 
     private updateUser(newclass){
-      console.log(newclass + "hi");
+      console.log(newclass, this.userid);
       this.af.collection("/user").doc(this.userid).update({
-        classes: newclass
+        notes: newclass
       });
       return true;
     }
